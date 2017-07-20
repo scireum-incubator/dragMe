@@ -17,7 +17,7 @@
                 var left = Math.min(Math.max(containerOffset.left, event.clientX - x), maxRight);
                 _div.css({
                     position: 'absolute',
-                    margin: 0,
+                    margin: '',
                     top: top + 'px',
                     left: left + 'px'
                 });
