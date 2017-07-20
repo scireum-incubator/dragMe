@@ -4,8 +4,9 @@
             options = {};
         }
         var _div = this;
+        var _touchTarget = $(options.touchTarget) || _div;
         var _container = $(options.container || 'body');
-        _div.off('mousedown.dragMe').on('mousedown.dragMe', function (e) {
+        _touchTarget.off('mousedown.dragMe').on('mousedown.dragMe', function (e) {
             var offset = $(this).offset();
             var x = e.pageX - offset.left;
             var y = e.pageY - offset.top;

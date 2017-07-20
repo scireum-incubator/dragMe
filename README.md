@@ -17,3 +17,9 @@ OR
 $('#dragster').dragMe({container: $('#container')});
 ```
 etc...
+
+If you want to only be only to drag on a part of the div use this syntax:
+
+```
+$('#dragster').dragMe({touchTarget: '#dragster-header'});
+```
