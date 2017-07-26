@@ -19,6 +19,9 @@
             if (e.which !== 1) {
                 return;
             }
+
+            _touchTarget.css({ cursor: 'move' });
+
             var offset = $(this).offset();
             //mouse position relative to div
             var x = e.pageX - offset.left;
@@ -42,6 +45,8 @@
         _window.on('mouseup.dragMe', function (e) {
             if (e.which === 1) {
                 _window.off('mousemove.dragMe');
+
+                _touchTarget.css({ cursor: '' });
             }
         });
     }
