@@ -27,13 +27,24 @@
             var x = e.pageX - offset.left;
             var y = e.pageY - offset.top;
             _window.on('mousemove.dragMe', function (event) {
-                var containerOffset = _container.offset();
-                var maxBottom = containerOffset.top + _container.outerHeight() - _div.outerHeight();
-                var maxRight = containerOffset.left + _container.outerWidth() - _div.outerWidth();
+                if (options.restrictToWindow) {
+                    var maxTop = _window.scrollTop();
+                    var maxBottom = _window.scrollTop() + _window.innerHeight() - _div.outerHeight();
+                    var maxLeft = _window.scrollLeft();
+                    var maxRight = _window.scrollLeft() + _window.innerWidth() - _div.outerWidth();
+                } else {
+                    var containerOffset = _container.offset();
+                    var maxTop = containerOffset.top;
+                    var maxBottom = containerOffset.top + _container.outerHeight() - _div.outerHeight();
+                    var maxLeft = containerOffset.left;
+                    var maxRight = containerOffset.left + _container.outerWidth() - _div.outerWidth();
+                }
+                
                 var mouseY = event.clientY - y + _container.scrollTop();
-                var mouseX = event.clientX - x + _container.scrollLeft()
-                var top = Math.min(Math.max(containerOffset.top, mouseY), maxBottom);
-                var left = Math.min(Math.max(containerOffset.left, mouseX), maxRight);
+                var mouseX = event.clientX - x + _container.scrollLeft();
+                
+                var top = Math.min(Math.max(maxTop, mouseY), maxBottom);
+                var left = Math.min(Math.max(maxLeft, mouseX), maxRight);
                 _div.css({
                     position: 'absolute',
                     margin: '',
